@@ -2,4 +2,9 @@
     <head> 
         <script type = "text/javascript" src = "break-timer.js"></script>
     </head> 
+    <body>
+        <label for="time"> Set alarm:</label> <br>
+        <input type="number" id="time" name="time"> </input> <br>
+        <button onclick="triggerAlert(document.getElementById('time').value)"> Submit </button>
+    </body>
 </html>

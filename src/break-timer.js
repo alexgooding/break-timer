@@ -1,7 +1,7 @@
-
-
 function breakMessage() {
-    alert("Take a break!"); 
+    alert("Take a break!");
 }
 
-setInterval(breakMessage, 10000);
+function triggerAlert(time) {
+    setInterval(breakMessage, time);
+}
