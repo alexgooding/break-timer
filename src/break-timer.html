@@ -1,10 +1,17 @@
 <html> 
     <head> 
-        <script type = "text/javascript" src = "break-timer.js"></script>
+        <script type="text/javascript" src="break-timer.js"></script>
+        <link rel="stylesheet" href="break-timer.css"> 
     </head> 
     <body>
         <label for="time"> Set alarm:</label> <br>
-        <input type="number" id="time" name="time"> </input> <br>
+        <input type="number" id="time" name="time"> </input> 
+        <span> minutes</span> <br>
         <button onclick="triggerAlert(document.getElementById('time').value)"> Submit </button>
+
+        <div id="toast">
+            <p>Take a break!</p>
+            <button onclick="dismissAlert(document.getElementById('time').value)"> I have taken my break </button>
+        </div>
     </body>
 </html>
