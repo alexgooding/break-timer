@@ -1,8 +1,8 @@
-#toast {
+.toast {
     visibility: hidden;
     position: fixed;
 }
 
-#toast.show {
+.toast.show {
     visibility: visible;
 }

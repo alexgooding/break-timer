@@ -4,14 +4,21 @@
         <link rel="stylesheet" href="break-timer.css"> 
     </head> 
     <body>
-        <label for="time"> Set alarm:</label> <br>
-        <input type="number" id="time" name="time"> </input> 
+        <label for="work-length"> Work length:</label>
+        <input type="number" id="work-length" name="work-length"> </input> 
         <span> minutes</span> <br>
-        <button onclick="triggerAlert(document.getElementById('time').value)"> Submit </button>
+        <label for="break-length"> Break length:</label>
+        <input type="number" id="break-length" name="break-length"> </input> 
+        <span> minutes</span> <br>
+        <button onclick="toastControl(document.getElementById('work-length').value, 'break-toast')"> Submit </button>
 
-        <div id="toast">
+        <div id="break-toast" class="toast">
             <p>Take a break!</p>
-            <button onclick="dismissAlert(document.getElementById('time').value)"> I have taken my break </button>
+            <button onclick="toastControl(document.getElementById('break-length').value, 'work-toast', 'break-toast')"> Take break </button>
+        </div>
+        <div id="work-toast" class="toast">
+            <p>Get back to work!</p>
+            <button onclick="toastControl(document.getElementById('work-length').value, 'break-toast', 'work-toast')"> Back to work </button>
         </div>
     </body>
 </html>
