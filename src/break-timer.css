@@ -1,0 +1,20 @@
+.toast {
+    visibility: hidden;
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%);
+    border-style: solid;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 25px;
+}
+
+.toast.show {
+    visibility: visible;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
