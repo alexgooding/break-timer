@@ -16,5 +16,34 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, Arial-black;
+    background-color: powderblue;
+    color: grey;
+}
+
+#work-length-box {
+    background-color: palegoldenrod;
+}
+
+#break-length-box {
+    background-color: rgb(206, 158, 206);
+}
+
+#timer-setup-form {
+    text-align: center;
+}
+
+.input-box {
+    border: 2px solid rgb(173, 173, 173);
+    padding: 20px;
+    width: 20%;
+    margin-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    margin: 5%;
+}
+
+.input-box > * {
+    width: 50%
 }
