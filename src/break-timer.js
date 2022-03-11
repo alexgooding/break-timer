@@ -18,8 +18,8 @@ function calculateSnoozeLength(minutes) {
 }
 
 function updateSnoozeButtons() {
-    var breakLength = document.getElementById('break-length').value;
-    var workLength = document.getElementById('work-length').value;
+    var breakLength = window.location.search.slice(1).split("&")[1].split("=")[1];
+    var workLength = window.location.search.slice(1).split("&")[0].split("=")[1];
     var breakSnoozeLength = calculateSnoozeLength(breakLength);
     var workSnoozeLength = calculateSnoozeLength(workLength);
 
