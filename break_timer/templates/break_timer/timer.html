@@ -1,7 +1,8 @@
 <html> 
     <head> 
-        <script type="text/javascript" src="break-timer.js"></script>
-        <link rel="stylesheet" href="break-timer.css"> 
+        {% load static %}
+        <script type="text/javascript" src="{% static 'break_timer/break-timer.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'break_timer/break-timer.css' %}" />
     </head>
     <body>
         <span> Time left: </span> <br>

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class HelloConfig(AppConfig):
+class BreakTimerConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'hello'
+    name = 'break_timer'
