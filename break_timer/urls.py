@@ -3,5 +3,5 @@ from break_timer import views
 
 urlpatterns = [
     path("", views.home, name="home"),
-    path("", views.timer, name="timer")
+    path("timer/", views.timer, name="timer")
 ]
