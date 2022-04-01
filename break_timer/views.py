@@ -10,6 +10,8 @@ def timer(request):
         break_length = request.POST['break-length']
         data = {
             'work_length': work_length,
-            'break_length': break_length
+            'break_length': break_length,
+            'work_snooze_length': float(work_length)/5,
+            'break_snooze_length': float(break_length)/5
         }
         return render(request, 'break_timer/timer.html', data)
