@@ -1,22 +1,23 @@
 <html> 
     <head> 
-        <script type="text/javascript" src="break-timer.js"></script>
-        <link rel="stylesheet" href="break-timer.css"> 
+        {% load static %}
+        <script type="text/javascript" src="{% static 'break_timer/break-timer.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'break_timer/break-timer.css' %}" />
     </head>
     <body>
-        <form id="timer-setup-form" action="timer.html">
+        <form id="timer-setup-form" action={% url 'timer' %} method="POST">
             <div id="welcome-message">
                 <h1>Welcome! Please enter your break and work times</h1>
             </div>
             <div id="input-box-container">
                 <div id="work-length-box" class="input-box">
                     <label for="work-length"> Work length:</label> <br>
-                    <input type="number" id="work-length" name="work-length" class="input-value"> </input> <br>
+                    <input type="number" step="0.1" id="work-length" name="work-length" class="input-value"> </input> <br>
                     <span> minutes</span> <br>
                 </div>
                 <div id="break-length-box" class="input-box">
                     <label for="break-length"> Break length:</label> <br>
-                    <input type="number" id="break-length" name="break-length" class="input-value"> </input> <br>
+                    <input type="number" step="0.1" id="break-length" name="break-length" class="input-value"> </input> <br>
                     <span> minutes</span> <br>
                 </div>
             </div>
