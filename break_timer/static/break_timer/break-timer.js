@@ -4,14 +4,10 @@ function toastControl(time, toastToTriggerId, toastToDismissId=null) {
         toastToDismiss.classList.remove("show"); 
     }
     var toastToTrigger = document.getElementById(toastToTriggerId);
-    var timeInMilliseconds = minutesToMilliseconds(time);
-    countdownTimer(timeInMilliseconds);
-    setTimeout(function(){ toastToTrigger.classList.add("show"); }, timeInMilliseconds);
+    countdownTimer(time);
+    setTimeout(function(){ toastToTrigger.classList.add("show"); }, time);
 }
 
-function minutesToMilliseconds(minutes) {
-    return minutes * 1000 * 60;
-}
 
 function countdownTimer(milliseconds) {
     var timerElement = document.getElementById("timer");
@@ -37,4 +33,8 @@ function formatMillisecondsToTime(milliseconds) {
 
 function formatTimeComponent(value) {
     return ("0" + value).slice(-2);
+}
+
+function formatToastTime(){
+    
 }
