@@ -11,12 +11,12 @@
         <div id="break-toast" class="toast">
             <p>Take a break!</p>
             <button class="toast-button" onclick="toastControl({{break_length}}, 'work-toast', 'break-toast')"> Take break </button>
-            <button class="toast-button" id="work-snooze-button" onclick="toastControl({{work_snooze_length}}, 'break-toast', 'break-toast')"> Snooze for {{work_snooze_length}} minutes </button>
+            <button class="toast-button" id="work-snooze-button" onclick="toastControl({{work_snooze_length}}, 'break-toast', 'break-toast')"> Snooze for {{formatted_work_snooze_length}} </button>
         </div>
         <div id="work-toast" class="toast">
             <p>Get back to work!</p>
             <button class="toast-button" onclick="toastControl({{work_length}}, 'break-toast', 'work-toast')"> Back to work </button>
-            <button class="toast-button" id="break-snooze-button" onclick="toastControl({{break_snooze_length}}, 'work-toast', 'work-toast')"> Snooze for {{break_snooze_length}} minutes </button>
+            <button class="toast-button" id="break-snooze-button" onclick="toastControl({{break_snooze_length}}, 'work-toast', 'work-toast')"> Snooze for {{formatted_break_snooze_length}} </button>
         </div>
     </body>
     <script>

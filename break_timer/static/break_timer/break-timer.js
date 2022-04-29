@@ -8,7 +8,6 @@ function toastControl(time, toastToTriggerId, toastToDismissId=null) {
     setTimeout(function(){ toastToTrigger.classList.add("show"); }, time);
 }
 
-
 function countdownTimer(milliseconds) {
     var timerElement = document.getElementById("timer");
     var timeLeft = milliseconds;
@@ -33,8 +32,4 @@ function formatMillisecondsToTime(milliseconds) {
 
 function formatTimeComponent(value) {
     return ("0" + value).slice(-2);
-}
-
-function formatToastTime(){
-    
 }
