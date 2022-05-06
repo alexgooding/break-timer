@@ -14,7 +14,7 @@ function countdownTimer(milliseconds) {
     timerElement.innerHTML = formatMillisecondsToTime(timeLeft);
     var interval = setInterval(function() {
         timeLeft -= 1000;
-        timerElement.innerHTML = formatMillisecondsToTime(timeLeft);
+        timerElement.childNodes[0].textContent = formatMillisecondsToTime(timeLeft);
         if (timeLeft <= 0) {
             clearInterval(interval);
         }  
