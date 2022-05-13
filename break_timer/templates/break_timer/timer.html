@@ -17,6 +17,9 @@
             <button class="toast-button" onclick="toastControl({{work_length}}, 'break-toast', 'work-toast')"> Back to work </button>
             <button class="toast-button" id="break-snooze-button" onclick="toastControl({{break_snooze_length}}, 'work-toast', 'work-toast')"> Snooze for {{formatted_break_snooze_length}} </button>
         </div>
+        <div>
+            <button class="home-button" id="home-button" onclick="location.href = '/home'"> Back to Home </button>
+        </div>
     </body>
     <script>
         toastControl({{work_length}}, 'break-toast'); 

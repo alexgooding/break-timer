@@ -84,3 +84,13 @@ body {
     font-size: 50px;
     padding: 25px;
 }
+
+.home-button {
+    bottom: 10%;
+    position: absolute;
+    font-size: 15px;
+    padding: 10px;
+    left: 5%;
+    color: rgba(128, 0, 128, 0.559);
+    border-color: white;
+}
