@@ -1,3 +1,4 @@
+from django.views.generic import RedirectView
 """web_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -18,5 +19,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path("", include("break_timer.urls")),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('', RedirectView.as_view(url='/home/', permanent=True))
 ]
