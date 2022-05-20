@@ -17,6 +17,8 @@ function countdownTimer(milliseconds) {
         timerElement.childNodes[0].textContent = formatMillisecondsToTime(timeLeft);
         if (timeLeft <= 0) {
             clearInterval(interval);
+            var audioAlert = document.getElementById("back-to-work-alert");
+            audioAlert.play();
         }  
     }, 1000);
 }
