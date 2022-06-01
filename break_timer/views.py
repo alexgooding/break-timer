@@ -1,8 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.db import transaction
 from break_timer.utils import convert_to_float, round_to_nearest_second, format_snooze_length
+from break_timer.models import MuteAudio
 
 def home(request):
+    with transaction.atomic():
+        mute_audio = MuteAudio()
+        mute_audio.mute = False
+        mute_audio.save()
     return render(request, 'break_timer/home.html')
 
 def timer(request):

@@ -7,3 +7,6 @@ __pycache__/
 
 # vscode
 .vscode/
+
+# sqlite
+db.sqlite3
