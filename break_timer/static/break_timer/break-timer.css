@@ -94,3 +94,21 @@ body {
     color: rgba(128, 0, 128, 0.559);
     border-color: white;
 }
+
+input[type=checkbox] {
+    display: none;
+  }
+.label {
+    display: inline-block;
+    padding: 30px;
+    background: url("sound_icon.png") no-repeat right; 
+    padding-right: 30px;
+    background-size: contain;
+  }
+
+  input[type=checkbox]:checked + .label {
+    background: url("sound_icon_mute.png") no-repeat right;
+    background-size: contain;
+  }
+
+/* TODO: style the div for nav bar */
