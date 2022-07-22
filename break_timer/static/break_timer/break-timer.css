@@ -102,7 +102,6 @@ input[type=checkbox] {
     display: inline-block;
     padding: 30px;
     background: url("sound_icon.png") no-repeat right; 
-    padding-right: 30px;
     background-size: contain;
   }
 
@@ -111,4 +110,17 @@ input[type=checkbox] {
     background-size: contain;
   }
 
-/* TODO: style the div for nav bar */
+#mute-button {
+    float: right;
+    margin: 30px;
+}
+
+#navigation-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: inline-block;
+}
+
+/* TODO find out how to add padding (on the indside) to the navigation-bar */
+/* TODO don't spend too long with css and start database interactions */
