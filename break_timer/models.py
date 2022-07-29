@@ -10,4 +10,3 @@ class MuteAudio(models.Model):
 #     mute_audio = MuteAudio()
 #     mute_audio.mute = True
 #     mute_audio.save()
-

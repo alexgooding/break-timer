@@ -26,8 +26,13 @@
             </div>      
         </form>
         <div id="navigation-bar">
-            <div id="mute-button">
-                <label><input type="checkbox"><span class="label"></span></label>
+            <div id="mute-button" class="navigation-bar-element">
+                <form id="mute-button-form" action={% url 'mute' %} method="POST">
+                    <label>
+                        <input type="checkbox">
+                        <span class="label"></span>
+                    </label>
+                </form>
             </div>
         </div>
     </body>

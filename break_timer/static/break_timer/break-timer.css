@@ -20,6 +20,11 @@ body {
     font-family: Arial, Helvetica, Arial-black;
     background-color: powderblue;
     color: grey;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
 }
 
 #work-length-box {
@@ -110,9 +115,12 @@ input[type=checkbox] {
     background-size: contain;
   }
 
+.navigation-bar-element {
+    margin: 30px;
+}
+
 #mute-button {
     float: right;
-    margin: 30px;
 }
 
 #navigation-bar {
@@ -121,6 +129,3 @@ input[type=checkbox] {
     width: 100%;
     display: inline-block;
 }
-
-/* TODO find out how to add padding (on the indside) to the navigation-bar */
-/* TODO don't spend too long with css and start database interactions */
