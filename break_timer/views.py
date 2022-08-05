@@ -24,3 +24,7 @@ def timer(request):
         }
         return render(request, 'break_timer/timer.html', data)
 
+def mute(request):
+    if request.method == 'POST':
+        # TODO
+        pass

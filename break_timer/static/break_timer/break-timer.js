@@ -35,3 +35,21 @@ function formatMillisecondsToTime(milliseconds) {
 function formatTimeComponent(value) {
     return ("0" + value).slice(-2);
 }
+
+
+function updateMuteButtonValue() {
+    $.ajax({
+        url: "/mute",
+        type: "POST",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
+        success: (data) => {
+          console.log(data);
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+}
