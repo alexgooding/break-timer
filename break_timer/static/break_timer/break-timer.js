@@ -39,11 +39,10 @@ function formatTimeComponent(value) {
 
 function updateMuteButtonValue() {
     $.ajax({
-        url: "/mute",
+        url: "/mute/",
         type: "POST",
         headers: {
-          "X-Requested-With": "XMLHttpRequest",
-          "X-CSRFToken": getCookie("csrftoken"),
+          "X-Requested-With": "XMLHttpRequest"
         },
         success: (data) => {
           console.log(data);
