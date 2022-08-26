@@ -35,3 +35,8 @@ def mute(request):
             mute_audio.mute = updated_value
             mute_audio.save()
         return HttpResponse(f"updated mute to {updated_value}")
+    
+    if request.method == 'GET':
+        with transaction.atomic():
+            mute = MuteAudio.objects.get().mute
+        return HttpResponse(mute)
