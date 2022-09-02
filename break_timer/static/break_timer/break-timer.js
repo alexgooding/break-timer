@@ -40,6 +40,7 @@ function updateMuteButtonValue() {
     $.ajax({
         url: "/mute/",
         type: "POST",
+        async: false,
         headers: {
           "X-Requested-With": "XMLHttpRequest"
         },
@@ -53,21 +54,22 @@ function updateMuteButtonValue() {
 }
 
 function getMuteButtonValue() {
+    var result = null;
     $.ajax({
         url: "/mute/",
         type: "GET",
+        async: false,
         headers: {
           "X-Requested-With": "XMLHttpRequest"
         },
         success: (data) => {
-          console.log(data);
-          // TODO return data asychronously
-          return data;
+          result = data;
         },
         error: (error) => {
           console.log(error);
         }
       });
+    return result;
 }
 
 function muteElem(elem) {
@@ -75,8 +77,16 @@ function muteElem(elem) {
     elem.pause();
 }
 
+function unmuteElem(elem) {
+  elem.muted = false;
+}
+
 function mutePage() {
     document.querySelectorAll("audio").forEach(elem => muteElem(elem));
+}
+
+function unmutePage() {
+  document.querySelectorAll("audio").forEach(elem => unmuteElem(elem));
 }
 
 function pageMuteControl() {
@@ -85,14 +95,12 @@ function pageMuteControl() {
 
     // mute page is mute enabled
     response = getMuteButtonValue();
-    mute = Boolean(response);
-    console.log(response);
-    console.log(mute);
-    if (mute) {
+    if (response === 'True') {
         mutePage();
         console.log("Page muted");
     }
     else {
-        // TODO unmute page
+        unmutePage();
+        console.log("Page unmuted");
     }
 } 
