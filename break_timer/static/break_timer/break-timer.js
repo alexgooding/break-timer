@@ -93,7 +93,7 @@ function pageMuteControl() {
     // update mute button value
     updateMuteButtonValue();
 
-    // mute page is mute enabled
+    // mute page if mute enabled
     response = getMuteButtonValue();
     if (response === 'True') {
         mutePage();
@@ -104,3 +104,9 @@ function pageMuteControl() {
         console.log("Page unmuted");
     }
 } 
+
+function displayMuteIcon() {
+  /* gets the mute value from the database and updates the mute icon accordingly */
+  mute_value = getMuteButtonValue()
+  //TODO: finish function to update icon
+}
