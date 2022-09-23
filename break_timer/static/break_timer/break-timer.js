@@ -107,6 +107,9 @@ function pageMuteControl() {
 
 function displayMuteIcon() {
   /* gets the mute value from the database and updates the mute icon accordingly */
-  mute_value = getMuteButtonValue()
-  //TODO: finish function to update icon
+  mute_value = getMuteButtonValue();
+  //TODO: finish function to update icon, not currently working
+  if (mute_value == 'True') {
+    document.querySelectorAll("input[type='checkbox']");
+  }
 }
