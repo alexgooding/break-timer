@@ -89,21 +89,25 @@ function unmutePage() {
   document.querySelectorAll("audio").forEach(elem => unmuteElem(elem));
 }
 
-function pageMuteControl() {
+function configureAudioElements() {
+  // mute page if mute enabled
+  response = getMuteButtonValue();
+  var muteCheckbox = document.getElementById('mute-button-checkbox');
+  if (response === 'True') {
+      muteCheckbox.checked = true;
+      mutePage();
+      console.log("Page muted");
+  }
+  else {
+      muteCheckbox.checked = false;
+      unmutePage();
+      console.log("Page unmuted");
+  }
+}
+
+function onClickMuteControl() {
     // update mute button value
     updateMuteButtonValue();
 
-    // mute page if mute enabled
-    response = getMuteButtonValue();
-    var muteCheckbox = document.getElementById('mute-button-checkbox');
-    if (response === 'True') {
-        muteCheckbox.checked = true;
-        mutePage();
-        console.log("Page muted");
-    }
-    else {
-        muteCheckbox.checked = false;
-        unmutePage();
-        console.log("Page unmuted");
-    }
+    configureAudioElements();    
 } 
