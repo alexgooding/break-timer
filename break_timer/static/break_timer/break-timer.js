@@ -95,24 +95,15 @@ function pageMuteControl() {
 
     // mute page if mute enabled
     response = getMuteButtonValue();
+    var muteCheckbox = document.getElementById('mute-button-checkbox');
     if (response === 'True') {
+        muteCheckbox.checked = true;
         mutePage();
         console.log("Page muted");
     }
     else {
+        muteCheckbox.checked = false;
         unmutePage();
         console.log("Page unmuted");
     }
 } 
-
-function displayMuteIcon() {
-  /* gets the mute value from the database and updates the mute icon accordingly */
-  mute_value = getMuteButtonValue();
-  var muteCheckbox = document.getElementById('mute-button-checkbox');
-  if (mute_value == 'True') {
-    muteCheckbox.checked = true;
-  }
-  else {
-    muteCheckbox.checked = false;
-  }
-}
