@@ -91,15 +91,12 @@ body {
     padding: 25px;
 }
 
-.home-button {
-    bottom: 20px;
-    position: fixed;
+#home-button {
+    float: left;
     font-size: 15px;
     padding: 10px;
-    left: 20px;
     color: rgba(128, 0, 128, 0.559);
     border-color: white;
-    /* margin: 2%; */
 }
 
 input[type=checkbox] {
@@ -119,7 +116,7 @@ input[type=checkbox] {
   }
 
 .navigation-bar-element {
-    margin: 3%;
+    margin: 2%;
 }
 
 #mute-button {
@@ -133,4 +130,5 @@ input[type=checkbox] {
     height: 20%;
     display: inline-block;
     margin-top: 5px;
+    /* margin: 5%; */
 }
