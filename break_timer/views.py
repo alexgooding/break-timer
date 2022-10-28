@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from break_timer.utils import convert_to_float, round_to_nearest_second, format_snooze_length
+from django.db import transaction
+from break_timer.models import MuteAudio
+from django.http import HttpResponse
 
 def home(request):
     return render(request, 'break_timer/home.html')
@@ -25,3 +27,16 @@ def timer(request):
         }
         return render(request, 'break_timer/timer.html', data)
 
+def mute(request):
+    if request.method == 'POST':
+        with transaction.atomic():
+            mute_audio = MuteAudio.objects.get()
+            updated_value = not mute_audio.mute
+            mute_audio.mute = updated_value
+            mute_audio.save()
+        return HttpResponse(f"updated mute to {updated_value}")
+    
+    if request.method == 'GET':
+        with transaction.atomic():
+            mute = MuteAudio.objects.get().mute
+        return HttpResponse(mute)
