@@ -13,3 +13,8 @@ db.sqlite3
 
 # migrations folder
 migrations
+
+# dist folder
+dist
+
+*.spec

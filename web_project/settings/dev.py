@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'break_timer'
+    'break_timer',
+    'web_project'
 ]
 
 MIDDLEWARE = [
