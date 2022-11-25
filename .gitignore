@@ -14,7 +14,8 @@ db.sqlite3
 # migrations folder
 migrations
 
-# dist folder
+# dist/build folder
 dist
+build
 
 *.spec
