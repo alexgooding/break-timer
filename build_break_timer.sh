@@ -8,10 +8,10 @@ rm -rf build
 rm -rf dist
 
 # create db
-echo "CREATING POSTGRES DATABASE"
+echo "CREATING SQLITE DATABASE"
 python manage.py makemigrations break_timer
 python manage.py migrate
-python3 manage.py loaddata muteAudio.json
+python manage.py loaddata muteAudio.json
 
 # create executable
 echo "CREATING BREAK-TIMER EXECUTABLE"
