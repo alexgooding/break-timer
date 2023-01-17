@@ -3,6 +3,11 @@ services:
     build: .
     volumes:
       - .:/app
+  web_migrate:
+    extends:
+      service: web
+    command: bash migrate_db.sh
+    profiles: ["migrate_db"]
   web_run:
     extends:
       service: web
