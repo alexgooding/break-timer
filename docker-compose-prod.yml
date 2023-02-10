@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+  web_migrate:
+    extends:
+      service: web
+    command: bash migrate_db.sh
+    profiles: ["migrate_db"]
+  web_run:
+    extends:
+      service: web
+    command: python manage.py runserver --settings web_project.settings.prod 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - sqlite-db:/app/sb.sqlite3
+
+volumes:
+  sqlite-db:
