@@ -3,12 +3,15 @@ from break_timer.utils import convert_to_float, round_to_nearest_second, format_
 from django.db import transaction
 from break_timer.models import MuteAudio
 from django.http import HttpResponse
+from django.views.generic import TemplateView
 
-def home(request):
-    return render(request, 'break_timer/home.html')
+class HomeView(TemplateView):
+    template_name = 'break_timer/home.html'
 
-def timer(request):
-    if request.method == 'POST':
+class TimerView(TemplateView):
+    template_name = 'break_timer/timer.html'
+    
+    def post(self, request):
         work_length = convert_to_float(request.POST['work-length'])
         break_length = convert_to_float(request.POST['break-length'])
         rounded_work_length = round_to_nearest_second(work_length)
@@ -17,6 +20,7 @@ def timer(request):
         rounded_break_snooze_length = round_to_nearest_second(break_length/5)
         formatted_work_snooze_length = format_snooze_length(rounded_work_snooze_length)
         formatted_break_snooze_length = format_snooze_length(rounded_break_snooze_length)
+
         data = {
             'work_length': rounded_work_length,
             'break_length': rounded_break_length,
@@ -25,7 +29,8 @@ def timer(request):
             'formatted_work_snooze_length': formatted_work_snooze_length,
             'formatted_break_snooze_length': formatted_break_snooze_length
         }
-        return render(request, 'break_timer/timer.html', data)
+
+        return self.render_to_response(data)
 
 def mute(request):
     if request.method == 'POST':
