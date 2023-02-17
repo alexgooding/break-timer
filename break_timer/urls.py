@@ -2,7 +2,7 @@ from django.urls import path
 from break_timer import views
 
 urlpatterns = [
-    path("home/", views.home, name="home"),
-    path("timer/", views.timer, name="timer"),
+    path("home/", views.HomeView.as_view(), name="home"),
+    path("timer/", views.TimerView.as_view(), name="timer"),
     path("mute/", views.mute, name="mute")
 ]
