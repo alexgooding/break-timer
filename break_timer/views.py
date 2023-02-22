@@ -3,7 +3,7 @@ from break_timer.utils import convert_to_float, round_to_nearest_second, format_
 from django.db import transaction
 from break_timer.models import MuteAudio
 from django.http import HttpResponse
-from django.views.generic import TemplateView
+from django.views.generic import View, TemplateView
 
 class HomeView(TemplateView):
     template_name = 'break_timer/home.html'
@@ -32,16 +32,7 @@ class TimerView(TemplateView):
 
         return self.render_to_response(data)
 
-def mute(request):
-    if request.method == 'POST':
-        with transaction.atomic():
-            mute_audio = MuteAudio.objects.get()
-            updated_value = not mute_audio.mute
-            mute_audio.mute = updated_value
-            mute_audio.save()
-        return HttpResponse(f"updated mute to {updated_value}")
-    
-    if request.method == 'GET':
-        with transaction.atomic():
-            mute = MuteAudio.objects.get().mute
-        return HttpResponse(mute)
+class ToggleMuteView(View):
+    def post(self, request):
+        request.session['mute_state'] = request.POST.get('mute_state')
+        return HttpResponse(f"Session {'muted' if request.POST.get('mute_state') == 'true' else 'unmuted'}")
