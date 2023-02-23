@@ -1,4 +1,4 @@
-{% extends "break_timer/layout.html" %}
+{% extends "layout.html" %}
 {% block navbar %}
     <div>
         <button id="home-button" class="navigation-bar-element" onclick="location.href = '/home'"> Back to Home </button>
@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %}
     {% load static %}  
-    <audio id="back-to-work-alert" src="{% static 'break_timer/back_to_work.mp3' %}"></audio>
+    <audio id="back-to-work-alert" src="{% static 'back_to_work.mp3' %}"></audio>
     <div id="timer" class="timer"> 
     </div>
     <div id="break-toast" class="toast">

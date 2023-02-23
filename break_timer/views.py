@@ -3,13 +3,13 @@ from break_timer.utils import convert_to_float, round_to_nearest_second, format_
 from django.db import transaction
 from break_timer.models import MuteAudio
 from django.http import HttpResponse
-from django.views.generic import View, TemplateView
+from django.views.generic import View, TemplateView, FormView
 
 class HomeView(TemplateView):
-    template_name = 'break_timer/home.html'
+    template_name = 'home.html'
 
 class TimerView(TemplateView):
-    template_name = 'break_timer/timer.html'
+    template_name = 'timer.html'
     
     def post(self, request):
         work_length = convert_to_float(request.POST['work-length'])
