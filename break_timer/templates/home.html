@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div id="welcome-message">
+        <h1>Welcome! Please enter your break and work times</h1>
+    </div>
+    <form id="timer-setup-form" method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="submit-button" class="submit-button">Submit</button>     
+    </form>
+{% endblock %}

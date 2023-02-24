@@ -20,5 +20,5 @@ from django.urls import include, path
 urlpatterns = [
     path("", include("break_timer.urls")),
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='/home/', permanent=True))
+    path('', RedirectView.as_view(url='/home', permanent=True))
 ]
