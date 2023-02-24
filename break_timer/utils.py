@@ -1,12 +1,6 @@
 from collections import OrderedDict
 
 
-def convert_to_float(string):
-    try:
-        return float(string)
-    except ValueError:
-        raise InvalidInputException(f"Cannot convert {string} to float. {string} is not a number")
-
 def round_to_nearest_second(minutes):
     """
     Round to the nearest second and return milliseconds

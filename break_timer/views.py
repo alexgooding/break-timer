@@ -1,14 +1,37 @@
-from break_timer.utils import convert_to_float, round_to_nearest_second, format_snooze_length
+from break_timer.utils import round_to_nearest_second, format_snooze_length
 from break_timer.models import Timer
 from break_timer.forms import TimerForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View, TemplateView, CreateView
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import UserCreationForm
 
-class HomeView(CreateView):
+class SignupView(UserPassesTestMixin, CreateView):
+    form_class = UserCreationForm
+    template_name = 'signup.html'
+    success_url = '/home'
+
+    def test_func(self):
+        return not self.request.user.is_authenticated
+    
+    def handle_no_permission(self):
+        return redirect('home')
+
+class LoginScreenView(LoginView):
+    template_name = 'login.html'
+
+class LogoutScreenView(LogoutView):
+    template_name = 'logout.html'
+
+class HomeView(LoginRequiredMixin, CreateView):
     template_name = 'home.html'
     model = Timer
     form_class = TimerForm
-    success_url = '/timer/'
+    success_url = '/timer'
+    login_url = reverse_lazy('login')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -16,25 +39,30 @@ class HomeView(CreateView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
-class TimerView(TemplateView):
+class TimerView(LoginRequiredMixin, TemplateView):
     template_name = 'timer.html'
+    login_url = reverse_lazy('login')
     
-    latest_timer = Timer.objects.latest('created')
-    rounded_work_length = round_to_nearest_second(latest_timer.work_length)
-    rounded_break_length = round_to_nearest_second(latest_timer.break_length)
-    rounded_work_snooze_length = round_to_nearest_second(latest_timer.work_length/5)
-    rounded_break_snooze_length = round_to_nearest_second(latest_timer.break_length/5)
-    formatted_work_snooze_length = format_snooze_length(rounded_work_snooze_length)
-    formatted_break_snooze_length = format_snooze_length(rounded_break_snooze_length)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        latest_timer = Timer.objects.filter(user_id=self.request.user.id).latest('created')
+        rounded_work_length = round_to_nearest_second(latest_timer.work_length)
+        rounded_break_length = round_to_nearest_second(latest_timer.break_length)
+        rounded_work_snooze_length = round_to_nearest_second(latest_timer.work_length/5)
+        rounded_break_snooze_length = round_to_nearest_second(latest_timer.break_length/5)
+        formatted_work_snooze_length = format_snooze_length(rounded_work_snooze_length)
+        formatted_break_snooze_length = format_snooze_length(rounded_break_snooze_length)
 
-    extra_context = {
-        'work_length': rounded_work_length,
-        'break_length': rounded_break_length,
-        'work_snooze_length': rounded_work_snooze_length,
-        'break_snooze_length': rounded_break_snooze_length,
-        'formatted_work_snooze_length': formatted_work_snooze_length,
-        'formatted_break_snooze_length': formatted_break_snooze_length
-    }   
+        context.update({
+            'work_length': rounded_work_length,
+            'break_length': rounded_break_length,
+            'work_snooze_length': rounded_work_snooze_length,
+            'break_snooze_length': rounded_break_snooze_length,
+            'formatted_work_snooze_length': formatted_work_snooze_length,
+            'formatted_break_snooze_length': formatted_break_snooze_length
+        })
+
+        return context   
 
 class ToggleMuteView(View):
     def post(self, request):
