@@ -33,11 +33,24 @@ class HomeView(LoginRequiredMixin, CreateView):
     success_url = '/timer'
     login_url = reverse_lazy('login')
 
+    # Inject current user into model data before saving the form
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
+    
+    # Set default values for the form
+    def get_initial(self):
+        initial = super().get_initial()
+        try:
+            latest_timer = Timer.objects.filter(user_id=self.request.user.id).latest('created')
+            initial['work_length'] = latest_timer.work_length
+            initial['break_length'] = latest_timer.break_length
+        except Timer.DoesNotExist:
+            initial['work_length'] = 25
+            initial['break_length'] = 5
+        return initial
 
 class TimerView(LoginRequiredMixin, TemplateView):
     template_name = 'timer.html'
