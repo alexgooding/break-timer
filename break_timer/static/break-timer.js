@@ -19,8 +19,12 @@ function countdownTimer(milliseconds) {
             clearInterval(interval);
             var audioAlert = document.getElementById("back-to-work-alert");
             audioAlert.play();
+            timerElement.style.display = "none";
         }  
     }, 1000);
+
+    // Show the timer again if it was previously hidden
+    timerElement.style.display = "block";
 }
 
 function formatMillisecondsToTime(milliseconds) {

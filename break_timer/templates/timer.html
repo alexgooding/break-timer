@@ -1,25 +1,33 @@
 {% extends "layout.html" %}
 {% block navbar %}
-    <div>
-        <button id="home-button" class="navigation-bar-element" onclick="location.href = '/home'"> Back to Home </button>
+    <div class="navbar-nav">
+        <button id="home-button" class="nav-item btn btn-secondary" onclick="location.href = '/home'"> Back to Home </button>
     </div>
 {% endblock %}
 {% block content %}
     {% load static %}  
     <audio id="back-to-work-alert" src="{% static 'back_to_work.mp3' %}"></audio>
-    <div id="timer" class="timer"> 
+    <div id="timer" class="timer text-center rounded my-5 mx-auto"> 
     </div>
-    <div id="break-toast" class="toast">
-        <p>Take a break!</p>
-        <button class="toast-button" onclick="toastControl({{break_length}}, 'work-toast', 'break-toast')"> Take break </button>
-        <button class="toast-button" id="work-snooze-button" onclick="toastControl({{work_snooze_length}}, 'break-toast', 'break-toast')"> Snooze for {{formatted_work_snooze_length}} </button>
+    <div id="break-toast" class="toast my-5 m-auto" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-primary text-light">
+            <strong class="m-auto">Take a break!</strong>
+        </div>
+        <div class="toast-body text-center p-3">
+            <button class="btn btn-success ml-2 my-2" onclick="toastControl({{ break_length }}, 'work-toast', 'break-toast')"> Take break </button>
+            <button class="btn btn-secondary mr-2 my-2" id="work-snooze-button" onclick="toastControl({{ work_snooze_length }}, 'break-toast', 'break-toast')"> Snooze for {{ formatted_work_snooze_length }} </button>
+        </div>
     </div>
-    <div id="work-toast" class="toast">
-        <p>Get back to work!</p>
-        <button class="toast-button" onclick="toastControl({{work_length}}, 'break-toast', 'work-toast')"> Back to work </button>
-        <button class="toast-button" id="break-snooze-button" onclick="toastControl({{break_snooze_length}}, 'work-toast', 'work-toast')"> Snooze for {{formatted_break_snooze_length}} </button>
+    <div id="work-toast" class="toast my-5 m-auto" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-primary text-light">
+            <strong class="m-auto">Get back to work!</strong>
+        </div>
+        <div class="toast-body text-center p-3">
+            <button class="btn btn-success ml-2 my-2 mr-1" onclick="toastControl({{ work_length }}, 'break-toast', 'work-toast')"> Back to work </button>
+            <button class="btn btn-secondary mr-2 my-2 ml-1" id="break-snooze-button" onclick="toastControl({{ break_snooze_length }}, 'work-toast', 'work-toast')"> Snooze for {{ formatted_break_snooze_length }} </button>
+        </div>
     </div>
     <script>
-        toastControl({{work_length}}, 'break-toast'); 
+        toastControl({{ work_length }}, 'break-toast'); 
     </script>
 {% endblock %}
