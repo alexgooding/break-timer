@@ -2,49 +2,51 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'break-timer.css' %}"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'break-timer.js' %}"></script>
+        <script>
+            function toggleMute() {
+                let muteCheckbox = document.getElementById('mute-button-checkbox');
+                let muteState = muteCheckbox.checked
+                $.post('{% url "mute" %}', {'mute_state': muteState})
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log('Failed to update mute state:', errorThrown);
+                });
+                document.querySelectorAll("audio").forEach(elem => elem.muted = muteState);
+            }
+        </script>
     </head>
     <body>
-        <div class="body-content">
+        <nav id="navigation-bar" class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand">Break Timer</a>
+                {% block navbar %}
+                {% endblock %}
+                <div class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
+                        <a href="{% url 'signup' %}" class="nav-item nav-link">Signup</a>
+                    {% endif %}
+                <div id="mute-button" class="navbar-nav">
+                    <label>
+                        <input type="checkbox" onclick="toggleMute()" id="mute-button-checkbox" {% if request.session.mute_state == 'true' %}checked{% endif %}>
+                        <span class="label"></span>
+                    </label>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
             {% block content %}
             {% endblock %}
         </div>
-        <div id="navigation-bar">
-            {% block navbar %}
-            {% endblock %}
-            <div id="mute-button" class="navigation-bar-element">
-                <label>
-                    <input type="checkbox" onclick="toggleMute()" id="mute-button-checkbox" {% if request.session.mute_state == 'true' %}checked{% endif %}>
-                    <span class="label"></span>
-                </label>
-            </div>
-            {% if user.is_authenticated %}
-            <div id="logout-button" class="navigation-bar-element">
-                <a href="{% url 'logout' %}">Logout</a>
-            </div>
-            {% else %}
-            <div id="login-button" class="navigation-bar-element">
-                <a href="{% url 'login' %}">Login</a>
-            </div>
-            <div id="signup-button" class="navigation-bar-element">
-                <a href="{% url 'signup' %}">Signup</a>
-            </div>
-            {% endif %}
-        </div>
+        <script>
+            document.querySelectorAll("audio").forEach(elem => elem.muted = {{ request.session.mute_state }});
+        </script>
     </body>
-    <script>
-        function toggleMute() {
-            let muteCheckbox = document.getElementById('mute-button-checkbox');
-            let muteState = muteCheckbox.checked
-            $.post('{% url "mute" %}', {'mute_state': muteState})
-            .fail(function(jqXHR, textStatus, errorThrown) {
-                console.log('Failed to update mute state:', errorThrown);
-            });
-            document.querySelectorAll("audio").forEach(elem => elem.muted = muteState);
-        }
-        document.querySelectorAll("audio").forEach(elem => elem.muted = {{ request.session.mute_state }});
-    </script>
 </html>

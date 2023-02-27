@@ -1,10 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div id="welcome-message">
+    <div id="welcome-message" class="text-center p-5 my-4">
         <h1>Welcome! Please enter your break and work times</h1>
     </div>
     <form id="timer-setup-form" method="POST">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" id="submit-button" class="submit-button">Submit</button>     
+        <div class="row align-items-center g-3 mx-auto">
+            {% for field in form %}
+                <div class="col-auto mx-auto border border-dark border-3 bg-light p-5">
+                    <label class="col-form-label mx-2" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="text-center">
+            <button type="submit" id="submit-button" class="btn btn-success btn-lg my-5">Submit</button>     
+        </div>
     </form>
+    {% if form.errors %}
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                <div class="alert alert-danger my-5">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}

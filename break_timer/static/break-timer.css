@@ -1,107 +1,7 @@
-.toast {
-    visibility: hidden;
-    text-align: center;
-    position: fixed;
-    left: 50%;
-    top: 10%;
-    transform: translate(-50%);
-    border-style: solid;
-    border-radius: 10px;
-    font-size: 20px;
-    padding: 25px;
-    background-color: rgb(180, 231, 180);
-}
-
-.toast.show {
-    visibility: visible;
-}
-
-body {
-    font-family: Arial, Helvetica, Arial-black;
-    background-color: powderblue;
-    color: grey;
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden; 
-}
-
-#work-length-box {
-    background-color: palegoldenrod;
-}
-
-#break-length-box {
-    background-color: rgb(206, 158, 206);
-}
-
-#timer-setup-form {
-    text-align: center;
-}
-
-.input-box {
-    border: 2px solid rgb(173, 173, 173);
-    padding: 20px;
-    width: 20%;
-    margin-right: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    display: inline-block;
-    margin: 3%;
-    font-size: 20px;
-}
-
-.input-box > * {
-    width: 30%;
-    height: 4%;
-}
-
-.submit-button {
-    background-color: rgb(145, 204, 145);
-    color: black;
-    padding: 10px 10px;
-    font-size: 20px;
-    box-shadow: 5px 5px;
-    position: relative;
-}
-
-.input-value {
-    font-size: 15px;
-    margin: 5px;
-}
-
-.toast-button {
-    min-width: 200px;
-    padding: 10px 10px;
-    margin: 5px;
-    font-size: 15px;
-}
-
-.timer {
-    color: rgba(122, 11, 11, 0.972);
-    text-align: center;
-    position: fixed;
-    left: 50%;
-    top: 10%;
-    transform: translate(-50%);
-    border-style: solid;
-    border-width: 5px;
-    border-radius: 10px;
-    font-size: 50px;
-    padding: 25px;
-}
-
-#home-button {
-    float: left;
-    font-size: 15px;
-    padding: 10px;
-    color: rgba(128, 0, 128, 0.559);
-    border-color: white;
-}
-
+/* Mute button */
 input[type=checkbox] {
     display: none;
-  }
+}
 
 .label {
     display: inline-block;
@@ -110,24 +10,32 @@ input[type=checkbox] {
     background-size: contain;
   }
 
-  input[type=checkbox]:checked + .label {
+input[type=checkbox]:checked + .label {
     background: url("sound_icon_mute.png") no-repeat right;
     background-size: contain;
-  }
-
-.navigation-bar-element {
-    margin: 2%;
 }
 
-#mute-button {
-    float: right;
+/* Alert list */ 
+ul.errorlist {display: none}
+
+/* Timer */
+.timer {
+    color: rgba(122, 11, 11, 0.972);
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 1px;
+    max-width: 35%;
+    font-size: 50px;
 }
 
-#navigation-bar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 20%;
-    display: inline-block;
-    margin-top: 5px;
+/* Toast */
+.toast-header {
+    font-size: 30px
+}
+
+/* Signup page */
+.signup-form {
+    text-align: left; 
+    margin: 0 auto; 
+    max-width: 600px
 }
